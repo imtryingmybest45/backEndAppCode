@@ -2,7 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.5.7'
 	id 'io.spring.dependency-management' version '1.1.7'
-    id "com.microsoft.azure.azurewebapp" version "1.10.0"
+    //id "com.microsoft.azure.azurewebapp" version "1.10.0"
 }
 
 group = 'com.example'
@@ -32,15 +32,15 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
-azurewebapp {
-    subscriptionId = "4aa488b0-40cf-4a74-9323-ae2196e016bf"
-    resourceGroup = "DefaultResourceGroup-EUS2"
-    appName = "newnewapp"
-    pricingTier = "F1"
-    region = "eastus2"
-    runtime {
-        os = "Windows"
-        webContainer = "Java SE" // Or "Tomcat 9.0"
-        javaVersion = "Java 21"
-    }
-}
+//azurewebapp {
+    //subscriptionId = "4aa488b0-40cf-4a74-9323-ae2196e016bf"
+    //resourceGroup = "DefaultResourceGroup-EUS2"
+    //appName = "newnewapp"
+    //pricingTier = "F1"
+    //region = "eastus2"
+    //runtime {
+        //os = "Windows"
+        //webContainer = "Java SE" // Or "Tomcat 9.0"
+        //javaVersion = "Java 21"
+    //}
+//}
