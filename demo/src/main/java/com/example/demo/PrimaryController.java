@@ -13,7 +13,7 @@ import java.io.IOException;
 
 @RestController
 public class PrimaryController {
-    @CrossOrigin(origins = {"http://localhost:8080", "http://localhost:3000"})
+    @CrossOrigin(origins = {"http://localhost:8080", "http://localhost:3000","https://delightful-mushroom-0b98f760f.3.azurestaticapps.net/"})
     @PostMapping("/genericEndpoint")
     public String getData(@RequestBody String content) {
         String fileStuff;
