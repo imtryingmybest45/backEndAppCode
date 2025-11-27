@@ -31,3 +31,16 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+azurewebapp {
+    subscriptionId = "4aa488b0-40cf-4a74-9323-ae2196e016bf"
+    resourceGroup = "DefaultResourceGroup-EUS2"
+    appName = "newnewapp"
+    pricingTier = "F1"
+    region = "eastus2"
+    runtime {
+        os = "Windows"
+        webContainer = "Java SE" // Or "Tomcat 9.0"
+        javaVersion = "Java 21"
+    }
+}
