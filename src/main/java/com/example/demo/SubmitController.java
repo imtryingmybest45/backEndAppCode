@@ -10,7 +10,7 @@ public class SubmitController {
             "https://delightful-mushroom-0b98f760f.3.azurestaticapps.net/",
             "https://www.aprilshorrorcorner.com",
             "https://aprilshorrorcorner.com",
-            "https://zealous-desert-09313150f.6.azurestaticapps.net"})
+            "https://zealous-desert-09313150f.6.azurestaticapps.net/"})
 
     @PostMapping("/submitEndpoint")
 

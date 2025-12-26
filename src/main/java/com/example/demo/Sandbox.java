@@ -13,7 +13,7 @@ public class Sandbox {
         /*Map<String, String> filesContent = new HashMap();
         filesContent.put("src/pages/England.txt", "London");
         filesContent.put("src/pages/USA.txt", "Washington DC");
-        GitHub github = (new GitHubBuilder()).withOAuthToken().build();
+        GitHub github = (new GitHubBuilder()).withOAuthToken(system.getEnv(HEDGEHOG)).build();
         GHRepository repo = github.getUser("imtryingmybest45").getRepository("testFrontEndCode");
         GHBranch branch = repo.getBranch("main");
         String baseCommitSha = branch.getSHA1();
