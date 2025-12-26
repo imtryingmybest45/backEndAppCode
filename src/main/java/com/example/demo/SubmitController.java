@@ -1,0 +1,59 @@
+package com.example.demo;
+import org.kohsuke.github.*;
+import org.springframework.web.bind.annotation.*;
+import java.io.IOException;
+import java.util.*;
+
+@RestController
+public class SubmitController {
+    @CrossOrigin(origins = {"http://localhost:3000",
+            "https://delightful-mushroom-0b98f760f.3.azurestaticapps.net/",
+            "https://www.aprilshorrorcorner.com",
+            "https://aprilshorrorcorner.com",
+            "https://zealous-desert-09313150f.6.azurestaticapps.net"})
+
+    @PostMapping("/submitEndpoint")
+
+    public String getData(@RequestBody MyRequestDTO requestDTO) throws IOException {
+
+        Constants constants = new Constants();
+        OtherFunctions otherFunctions = new OtherFunctions();
+
+        String repoName = constants.repoName;
+        String gitToken = constants.gitToken;
+        String repoOwner = constants.repoOwner;
+        String branch = constants.branch; // Or your target branch
+
+        boolean submitFlag = true;
+
+        String movieNameAsEntered = requestDTO.getMovieName(); //This is the movie name without spaces
+        String movieReview = requestDTO.getMovieReview();
+
+        String movieNameWithSpaces = movieNameAsEntered.substring(0, movieNameAsEntered.length());
+        String movieNameWithoutSpaces = movieNameWithSpaces.replaceAll("\\s", ""); //movieName is the inputted name without spaces
+
+        String origEditedNameWithSpaces = movieNameWithSpaces;
+        String origEditedNameWithoutSpaces = movieNameWithoutSpaces;
+
+        String newPagesFileContent = otherFunctions.writeNewPagesFile(movieNameWithSpaces, movieNameWithoutSpaces, movieReview);
+
+        List<String> origNameList = otherFunctions.getOrigName();
+        String origNameWithoutSpaces = origNameList.get(0);
+        String origNameWithSpaces = origNameList.get(1);
+        String newHomeContent = otherFunctions.editRoutesAppFile(movieNameWithoutSpaces, origEditedNameWithoutSpaces);
+        newHomeContent = otherFunctions.editLinksAppFile(movieNameWithSpaces, movieNameWithoutSpaces, origEditedNameWithSpaces, origEditedNameWithoutSpaces, origNameWithSpaces, origNameWithoutSpaces, newHomeContent);
+        newHomeContent = otherFunctions.addImportLine(movieNameWithoutSpaces, origEditedNameWithoutSpaces, newHomeContent, submitFlag);
+
+        Map<String, String> filesContent = new HashMap<>();
+
+        // Adding items
+        filesContent.put("src/pages/"+movieNameWithoutSpaces+".js", newPagesFileContent);
+        filesContent.put("src/pages/Home.js", newHomeContent);
+
+        otherFunctions.commitMultipleFiles(filesContent, gitToken, repoOwner, repoName, branch);
+
+        return "You have submitted your review. Please wait a few minutes for the website to refresh.";
+
+    }
+}
+
