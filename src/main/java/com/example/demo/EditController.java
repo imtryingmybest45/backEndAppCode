@@ -9,7 +9,7 @@ import java.util.*;
 @RestController
 public class EditController {
     @CrossOrigin(origins = {"http://localhost:3000",
-            "https://delightful-mushroom-0b98f760f.3.azurestaticapps.net/",
+            "https://green-smoke-0fa35931e.6.azurestaticapps.net/",
             "https://www.aprilshorrorcorner.com",
             "https://aprilshorrorcorner.com",
             "https://zealous-desert-09313150f.6.azurestaticapps.net/"})
@@ -54,7 +54,7 @@ public class EditController {
             filesContent.put("src/pages/Home.js", newHomeContent);
         }
 
-        otherFunctions.commitEditedFiles(filesContent, gitToken, repoOwner, repoName, branch, origEditedNameWithoutSpaces);
+        otherFunctions.commitEditedFiles(filesContent, gitToken, repoOwner, repoName, branch, origEditedNameWithoutSpaces, movieNameWithoutSpaces);
 
         return "You have edited your review. Please wait a few minutes for the website to refresh.";
 
