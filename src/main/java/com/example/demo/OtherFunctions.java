@@ -348,7 +348,7 @@ public class OtherFunctions {
         return poster;
     }
 
-    public static void commitMultipleFiles(Map<String, String> filesContent, String gitToken, String repoOwner, String repoName, String branchName) throws IOException {
+    public static void submitMultipleFiles(Map<String, String> filesContent, String gitToken, String repoOwner, String repoName, String branchName) throws IOException {
 
         GitHub github = new GitHubBuilder().withOAuthToken(gitToken).build();
         GHRepository repo = github.getUser(repoOwner).getRepository(repoName);
@@ -366,6 +366,48 @@ public class OtherFunctions {
             String contentOfFile = entry.getValue();
             treeBuilder.textEntry(pathToFile, contentOfFile,false);
         }
+
+        // 4. Create the new tree on GitHub
+        GHTree newTree = treeBuilder.create();
+        String newTreeSha = newTree.getSha();
+
+        // 5. Create the commit pointing to the new tree
+        GHCommit newCommit = repo.createCommit()
+                .message("multifile commit")
+                .tree(newTreeSha)
+                .parent(baseCommitSha)
+                .create();
+        GHRef ref = repo.getRef("refs/heads/" + branchName);
+
+        boolean forceUpdate = false;
+        ref.updateTo(newCommit.getSHA1(), forceUpdate);
+
+        // 6. Update the branch reference to point to the new commit
+        //repo.updateRef("refs/heads/" + branchName, newCommit.getSHA1());
+
+        System.out.println("Successfully committed " + filesContent.size() + " files in a single commit: " + newCommit.getHtmlUrl());
+    }
+
+    public static void commitEditedFiles(Map<String, String> filesContent, String gitToken, String repoOwner, String repoName, String branchName, String origMovieNameWithoutSpaces) throws IOException {
+
+        GitHub github = new GitHubBuilder().withOAuthToken(gitToken).build();
+        GHRepository repo = github.getUser(repoOwner).getRepository(repoName);
+        // 1. Get the SHA of the latest commit on the target branch
+        GHBranch branch = repo.getBranch(branchName);
+        String baseCommitSha = branch.getSHA1();
+
+        // 2. Get a tree builder object with the base of the current branch
+        GHTreeBuilder treeBuilder = repo.createTree().baseTree(baseCommitSha);
+
+        // 3. Add entries for all files to the tree builder
+        // The textEntry method acts as an "upsert" (create new or update existing)
+        for (Map.Entry<String, String> entry : filesContent.entrySet()) {
+            String pathToFile = entry.getKey();
+            String contentOfFile = entry.getValue();
+            treeBuilder.textEntry(pathToFile, contentOfFile,false);
+        }
+
+        treeBuilder.delete("src/pages/"+origMovieNameWithoutSpaces+".js");
 
         // 4. Create the new tree on GitHub
         GHTree newTree = treeBuilder.create();
