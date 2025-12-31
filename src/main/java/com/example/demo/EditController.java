@@ -33,9 +33,11 @@ public class EditController {
 
         String movieNameWithSpaces = movieNameAsEntered.substring(0, movieNameAsEntered.length());
         String movieNameWithoutSpaces = movieNameWithSpaces.replaceAll("\\s", ""); //movieName is the inputted name without spaces
+        movieNameWithoutSpaces = movieNameWithoutSpaces.replaceAll("[^a-zA-Z0-9]", "");
 
         String origEditedNameWithSpaces = origEditedName.substring(0, origEditedName.length());
         String origEditedNameWithoutSpaces = origEditedNameWithSpaces.replaceAll("\\s", ""); //movieName is the inputted name without spaces
+        origEditedNameWithoutSpaces = origEditedNameWithoutSpaces.replaceAll("[^a-zA-Z0-9]", "");
 
         String newPagesFileContent = otherFunctions.writeNewPagesFile(movieNameWithSpaces, movieNameWithoutSpaces, movieReview);
 
