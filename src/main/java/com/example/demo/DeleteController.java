@@ -27,6 +27,7 @@ public class DeleteController {
         movieName = movieName.substring(0, movieName.length() - 1);
         String movieNameWithSpaces = movieName.replace("+", " ");
         String movieNameWithoutSpaces = movieNameWithSpaces.replace(" ", "");
+        //movieNameWithoutSpaces = movieNameWithoutSpaces.replaceAll("[^a-zA-Z0-9]", "");
 
         String repoOwner = constants.repoOwner;
         String repoName = constants.repoName;

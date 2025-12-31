@@ -31,6 +31,7 @@ public class SubmitController {
 
         String movieNameWithSpaces = movieNameAsEntered.substring(0, movieNameAsEntered.length());
         String movieNameWithoutSpaces = movieNameWithSpaces.replaceAll("\\s", ""); //movieName is the inputted name without spaces
+        movieNameWithoutSpaces = movieNameWithoutSpaces.replaceAll("[^a-zA-Z0-9]", "");
 
         String origEditedNameWithSpaces = movieNameWithSpaces;
         String origEditedNameWithoutSpaces = movieNameWithoutSpaces;
