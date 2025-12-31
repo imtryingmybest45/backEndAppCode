@@ -27,7 +27,7 @@ public class DeleteController {
         movieName = movieName.substring(0, movieName.length() - 1);
         String movieNameWithSpaces = movieName.replace("+", " ");
         String movieNameWithoutSpaces = movieNameWithSpaces.replace(" ", "");
-        //movieNameWithoutSpaces = movieNameWithoutSpaces.replaceAll("[^a-zA-Z0-9]", "");
+        String movNameWithoutSpaces = movieNameWithoutSpaces.replaceAll("[^a-zA-Z0-9]", "");
 
         String repoOwner = constants.repoOwner;
         String repoName = constants.repoName;
@@ -41,7 +41,7 @@ public class DeleteController {
         GHContent stuff = repo.getFileContent(filePath, branch);
         String origFileCont = new String(stuff.read().readAllBytes(), "UTF-8");
 
-        String newPagesFileContent = otherFunctions.removeFile(movieNameWithSpaces, origFileCont);
+        String newPagesFileContent = otherFunctions.removeFile(movNameWithoutSpaces, origFileCont);
 
         Map<String, String> filesContent = new HashMap<>();
         // Adding items

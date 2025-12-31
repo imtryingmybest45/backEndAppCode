@@ -249,11 +249,11 @@ public class OtherFunctions {
         String combinedString = String.join(" ", wordsList);
         return combinedString;
     }
-    public static String removeFile(String movieName, String origFileCont){
+    public static String removeFile(String movNameWithoutSpaces, String origFileCont){
 
         String[] words = origFileCont.split("\\R");
         ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(words));
-        String movNameWithoutSpaces = movieName.replaceAll("\\s+", "");
+        //String movNameWithoutSpaces = movieName.replaceAll("\\s+", "");
 
         for(int i=0;i<arrayList.size();i++) {
             if (words[i].contains("\"/" +movNameWithoutSpaces+'\"')) {
