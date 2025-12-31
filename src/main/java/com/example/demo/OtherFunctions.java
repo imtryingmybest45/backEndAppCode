@@ -68,7 +68,8 @@ public class OtherFunctions {
         String funcFileContent = new String(funcTemplateFileContent.read().readAllBytes(), "UTF-8");
 
         String fileContent = modifyJsContent(funcFileContent, movieNameWithoutSpaces);
-        String poster = getMoviePoster(movieNameWithSpaces.replaceAll(" ","+"));
+        String mNameWSpacesNoSpecChars = movieNameWithSpaces.replaceAll("[^a-zA-Z0-9]", "");
+        String poster = getMoviePoster(mNameWSpacesNoSpecChars.replaceAll(" ","+"));
 
         movieReview = movieReview.replace("\n", "\\n");
         movieReview = movieReview.replace("\"","\\\"");
