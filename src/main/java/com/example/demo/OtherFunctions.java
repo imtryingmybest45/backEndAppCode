@@ -182,7 +182,7 @@ public class OtherFunctions {
         String[] newHomeContentList = newHomeContent.split("\r?\n");
         List<String> newHomeContentArrList = new ArrayList<>(Arrays.asList(newHomeContentList));
 
-        if (origEditedNameWithSpaces.equals(movieNameWithSpaces)) {
+        if (origEditedNameWithoutSpaces.equals(movieNameWithoutSpaces)) {
 
             int targetLine = findSubstringLines(newHomeContent, "//const stvar = \"hello\";");
             //String desLine = newHomeContentArrList.get(targetLine-3).toString();
