@@ -45,7 +45,7 @@ public class EditController {
         // Adding items
         filesContent.put("src/pages/"+movieNameWithoutSpaces+".js", newPagesFileContent);
 
-        if (!origEditedNameWithSpaces.equals(movieNameWithoutSpaces)){
+        if (!origEditedNameWithSpaces.equals(movieNameWithSpaces)){
             List<String> origNameList = otherFunctions.getOrigName();
             String origNameWithoutSpaces = origNameList.get(0);
             String origNameWithSpaces = origNameList.get(1);
