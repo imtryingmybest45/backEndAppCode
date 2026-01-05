@@ -47,7 +47,8 @@ public class DeleteController {
         // Adding items
         filesContent.put("src/pages/Home.js", newPagesFileContent);
 
-        otherFunctions.commitDeletedFiles(filesContent, gitToken, repoOwner, repoName, branch, movieNameWithoutSpaces);
+        //otherFunctions.commitDeletedFiles(filesContent, gitToken, repoOwner, repoName, branch, movieNameWithoutSpaces);
+        otherFunctions.commitDeletedFiles(filesContent, gitToken, repoOwner, repoName, branch, movNameWithoutSpaces);
 
         return "You have successfully deleted "+movieNameWithSpaces+". Please wait a few minutes for the website to refresh.";
     }
