@@ -183,9 +183,7 @@ public class OtherFunctions {
         List<String> newHomeContentArrList = new ArrayList<>(Arrays.asList(newHomeContentList));
 
         if (origEditedNameWithSpaces.equals(movieNameWithSpaces)) {
-
-            System.out.println("You've entered the right condition.");
-
+            
             int targetLine = findSubstringLines(newHomeContent, "//const stvar = \"hello\";");
             //String desLine = newHomeContentArrList.get(targetLine-3).toString();
             String desLine = newHomeContentArrList.get(targetLine - 7).toString();
