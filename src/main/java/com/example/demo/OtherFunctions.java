@@ -200,8 +200,6 @@ public class OtherFunctions {
             //newHomeContentArrList.add(targetLine-2, desLine);
         } else {
 
-            System.out.println("You've entered the wrong condition.");
-
             int targetLine = findSubstringLines(newHomeContent, "text: '" + origEditedNameWithSpaces + "'");
             String desLine = newHomeContentArrList.get(targetLine).toString();
             desLine = desLine.replaceFirst("\"" + origEditedNameWithSpaces + "\"", "\"" + movieNameWithSpaces + "\"");
