@@ -198,7 +198,7 @@ public class OtherFunctions {
             //newHomeContentArrList.add(targetLine-2, desLine);
         } else {
 
-            int targetLine = findSubstringLines(newHomeContent, "text: '" + origEditedNameWithSpaces + "'");
+            int targetLine = findSubstringLines(newHomeContent, "text: \"" + origEditedNameWithSpaces + "\"");
             String desLine = newHomeContentArrList.get(targetLine).toString();
             desLine = desLine.replaceFirst("\"" + origEditedNameWithSpaces + "\"", "\"" + movieNameWithSpaces + "\"");
             desLine = desLine.replaceFirst("\"/" + origEditedNameWithoutSpaces + "\"", "\"/" + movieNameWithoutSpaces + "\"");
