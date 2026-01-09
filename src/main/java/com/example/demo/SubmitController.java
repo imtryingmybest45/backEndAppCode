@@ -41,7 +41,7 @@ public class SubmitController {
         List<String> origNameList = otherFunctions.getOrigName();
         String origNameWithoutSpaces = origNameList.get(0);
         String origNameWithSpaces = origNameList.get(1);
-        String newHomeContent = otherFunctions.editRoutesAppFile(movieNameWithoutSpaces, origEditedNameWithoutSpaces);
+        String newHomeContent = otherFunctions.editRoutesAppFile(movieNameWithSpaces, movieNameWithoutSpaces, origEditedNameWithSpaces, origEditedNameWithoutSpaces);
         newHomeContent = otherFunctions.editLinksAppFile(movieNameWithSpaces, movieNameWithoutSpaces, origEditedNameWithSpaces, origEditedNameWithoutSpaces, origNameWithSpaces, origNameWithoutSpaces, newHomeContent);
         newHomeContent = otherFunctions.addImportLine(movieNameWithoutSpaces, origEditedNameWithoutSpaces, newHomeContent, submitFlag);
 

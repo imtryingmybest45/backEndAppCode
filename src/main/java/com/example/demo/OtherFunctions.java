@@ -127,8 +127,8 @@ public class OtherFunctions {
 
         int targetLine2 = findSubstringLines(homeOrigFileCont, "//const stvar = \"hello\";") - 7;
         String desLine2 = homeOrigFileContList.get(targetLine2).toString();
-        int firstIndex2 = findNthOccurrence(desLine2, "'", 1);
-        int secondIndex2 = findNthOccurrence(desLine2, "'", 2);
+        int firstIndex2 = findNthOccurrence(desLine2, "\"", 1);
+        int secondIndex2 = findNthOccurrence(desLine2, "\"", 2);
         String origNameAsTyped = desLine2.substring(firstIndex2 + 1, secondIndex2);
 
         List<String> origNameList = new ArrayList<>();
@@ -138,7 +138,7 @@ public class OtherFunctions {
         return origNameList;
     }
 
-    public static String editRoutesAppFile(String movieNameWithoutSpaces, String origEditedNameWithoutSpaces) throws IOException {
+    public static String editRoutesAppFile(String movieNameWithSpaces, String movieNameWithoutSpaces, String origEditedNameWithSpaces, String origEditedNameWithoutSpaces) throws IOException {
 
         Constants constants = new Constants();
 
@@ -157,7 +157,7 @@ public class OtherFunctions {
         String[] linesArray = origHomeFileCont.split("\r?\n");
         List<String> origHomeFileContList = new ArrayList<>(Arrays.asList(linesArray));
 
-        if (origEditedNameWithoutSpaces.equals(movieNameWithoutSpaces)) {
+        if (origEditedNameWithSpaces.equals(movieNameWithSpaces)) {
 
             int targetLine = findSubstringLines(origHomeFileCont, "</Routes>");
             String desLine = origHomeFileContList.get(targetLine - 1).toString();
@@ -184,6 +184,8 @@ public class OtherFunctions {
 
         if (origEditedNameWithSpaces.equals(movieNameWithSpaces)) {
 
+            System.out.println("You've entered the right condition.");
+
             int targetLine = findSubstringLines(newHomeContent, "//const stvar = \"hello\";");
             //String desLine = newHomeContentArrList.get(targetLine-3).toString();
             String desLine = newHomeContentArrList.get(targetLine - 7).toString();
@@ -191,16 +193,19 @@ public class OtherFunctions {
             String prevLinkNumber = Integer.toString(getIDNumber(desLine) - 1);
             desLine = desLine.replaceFirst(prevLinkNumber, newLinkNumber);
 
-            desLine = desLine.replaceFirst("'" + origNameWithSpaces + "'", "'" + movieNameWithSpaces + "'");
-            desLine = desLine.replaceFirst("'/" + origNameWithoutSpaces + "'", "'/" + movieNameWithoutSpaces + "'");
+            desLine = desLine.replaceFirst("\"" + origNameWithSpaces + "\"", "\"" + movieNameWithSpaces + "\"");
+            desLine = desLine.replaceFirst("\"/" + origNameWithoutSpaces + "\"", "\"/" + movieNameWithoutSpaces + "\"");
             desLine = desLine.replaceFirst("\"" + origNameWithSpaces + "\"", "\"" + movieNameWithSpaces + "\"");
             newHomeContentArrList.add(targetLine - 6, desLine);
             //newHomeContentArrList.add(targetLine-2, desLine);
         } else {
+
+            System.out.println("You've entered the wrong condition.");
+
             int targetLine = findSubstringLines(newHomeContent, "text: '" + origEditedNameWithSpaces + "'");
             String desLine = newHomeContentArrList.get(targetLine).toString();
-            desLine = desLine.replaceFirst("'" + origEditedNameWithSpaces + "'", "'" + movieNameWithSpaces + "'");
-            desLine = desLine.replaceFirst("'/" + origEditedNameWithoutSpaces + "'", "'/" + movieNameWithoutSpaces + "'");
+            desLine = desLine.replaceFirst("\"" + origEditedNameWithSpaces + "\"", "\"" + movieNameWithSpaces + "\"");
+            desLine = desLine.replaceFirst("\"/" + origEditedNameWithoutSpaces + "\"", "\"/" + movieNameWithoutSpaces + "\"");
             desLine = desLine.replaceFirst("\"" + origEditedNameWithSpaces + "\"", "\"" + movieNameWithSpaces + "\"");
             newHomeContentArrList.set(targetLine, desLine);
         }
