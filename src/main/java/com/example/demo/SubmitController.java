@@ -53,7 +53,7 @@ public class SubmitController {
         filesContent.put("src/pages/"+movieNameWithoutSpaces+".js", newPagesFileContent);
         filesContent.put("src/pages/Home.js", newHomeContent);
 
-        //otherFunctions.submitMultipleFiles(filesContent, gitToken, repoOwner, repoName, branch);
+        otherFunctions.submitMultipleFiles(filesContent, gitToken, repoOwner, repoName, branch);
 
         return "You have submitted your review. Please wait a few minutes for the website to refresh.";
 
