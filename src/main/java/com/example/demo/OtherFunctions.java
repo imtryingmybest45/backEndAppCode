@@ -194,8 +194,9 @@ public class OtherFunctions {
             desLine = desLine.replaceFirst(prevLinkNumber, newLinkNumber);
 
             desLine = desLine.replaceFirst("\"" + origNameWithSpaces + "\"", "\"" + movieNameWithSpaces + "\"");
+            //desLine = desLine.replaceFirst("\"" + origNameWithSpaces + "\"", "\"" + movieNameWithSpaces + "\"");
             desLine = desLine.replaceFirst("\"/" + origNameWithoutSpaces + "\"", "\"/" + movieNameWithoutSpaces + "\"");
-            desLine = desLine.replaceFirst("\"" + origNameWithSpaces + "\"", "\"" + movieNameWithSpaces + "\"");
+            //desLine = desLine.replaceFirst("\"" + origNameWithSpaces + "\"", "\"" + movieNameWithSpaces + "\"");
             desLine = replaceMoviePoster(movieNameWithSpaces, desLine);
             desLine = replaceMovieTier(movieTier, desLine);
             newHomeContentArrList.add(targetLine - 6, desLine);
@@ -204,9 +205,10 @@ public class OtherFunctions {
 
             int targetLine = findSubstringLines(newHomeContent, "text: \"" + origEditedNameWithSpaces + "\"");
             desLine = newHomeContentArrList.get(targetLine).toString();
-            desLine = desLine.replaceFirst("\"" + origEditedNameWithSpaces + "\"", "\"" + movieNameWithSpaces + "\"");
+            desLine = desLine.replace("\"" + origEditedNameWithSpaces + "\"", "\"" + movieNameWithSpaces + "\"");
+            //desLine = desLine.replaceFirst("\"" + origEditedNameWithSpaces + "\"", "\"" + movieNameWithSpaces + "\"");
             desLine = desLine.replaceFirst("\"/" + origEditedNameWithoutSpaces + "\"", "\"/" + movieNameWithoutSpaces + "\"");
-            desLine = desLine.replaceFirst("\"" + origEditedNameWithSpaces + "\"", "\"" + movieNameWithSpaces + "\"");
+            //desLine = desLine.replaceFirst("\"" + origEditedNameWithSpaces + "\"", "\"" + movieNameWithSpaces + "\"");
             desLine = replaceMoviePoster(movieNameWithSpaces, desLine);
             desLine = replaceMovieTier(movieTier, desLine);
             newHomeContentArrList.set(targetLine, desLine);
