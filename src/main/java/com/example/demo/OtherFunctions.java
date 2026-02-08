@@ -193,7 +193,7 @@ public class OtherFunctions {
             String prevLinkNumber = Integer.toString(getIDNumber(desLine) - 1);
             desLine = desLine.replaceFirst(prevLinkNumber, newLinkNumber);
 
-            desLine = desLine.replaceFirst("\"" + origNameWithSpaces + "\"", "\"" + movieNameWithSpaces + "\"");
+            desLine = desLine.replace("\"" + origNameWithSpaces + "\"", "\"" + movieNameWithSpaces + "\"");
             //desLine = desLine.replaceFirst("\"" + origNameWithSpaces + "\"", "\"" + movieNameWithSpaces + "\"");
             desLine = desLine.replaceFirst("\"/" + origNameWithoutSpaces + "\"", "\"/" + movieNameWithoutSpaces + "\"");
             //desLine = desLine.replaceFirst("\"" + origNameWithSpaces + "\"", "\"" + movieNameWithSpaces + "\"");
@@ -507,8 +507,11 @@ public class OtherFunctions {
 
     public static String replaceMovieTier(String movieTier, String desLine) throws JsonProcessingException {
         String desSubString = "tier: ";
+        String desSubStringEnd = "'},";
         int startTierInd = desLine.indexOf(desSubString) + desSubString.length();
-        String oldTier = desLine.substring(startTierInd + 1, startTierInd + 2);
+        int endTierInd = desLine.indexOf(desSubStringEnd);
+        //String oldTier = desLine.substring(startTierInd + 1, startTierInd + 2);
+        String oldTier = desLine.substring(startTierInd + 1, endTierInd);
         int start = desLine.lastIndexOf(oldTier);
         StringBuilder builder = new StringBuilder();
         builder.append(desLine.substring(0, start));
