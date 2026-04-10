@@ -34,6 +34,7 @@ public class AddController {
         String tier = "placeholder";
         String fullReview = "0";
         String year;
+        String movieQuery;
 
         Map<String, Object> response = new HashMap<>();
         CoreFunctions coreFunctions = new CoreFunctions();
@@ -47,22 +48,41 @@ public class AddController {
 
                 // Retrieve values by column name
                 name = dto.getMovieName();
+                movieQuery = name;
+                String newname = name.replaceAll("'","''");
+
+                if (movieQuery.contains("(")){
+                    int n = 0;
+                    int index = movieQuery.indexOf("(");
+                    for (int i = 1; i < 5; i++) {
+                        char V =  movieQuery.charAt(index+i);
+                        if (Character.isDigit(V)){
+                            n = n+1;
+                        }
+                    }
+                    if (n==4){
+                        Integer[] indices = {index-1, index, index+1, index+2, index+3, index+4, index+5};
+                        movieQuery = coreFunctions.removeCharsAtIndices(movieQuery,indices);
+                    }
+                }
+
+                System.out.println(movieQuery);
+
                 review = dto.getMovieReview();
                 year = dto.getMovieYear();
                 tier = dto.getMovieTier();
-                poster = coreFunctions.getMoviePoster(name, year);
+                poster = coreFunctions.getMoviePoster(movieQuery, year);
 
                 int wordCount = coreFunctions.countWords(review);
                 if (wordCount > 500) {
                     fullReview = "1";
                 }
 
-                name = "'"+name+"'";
+                name = "'"+newname+"'";
                 year = "'"+year+"'";
 
                 String valuesInserted = String.format("INSERT INTO horrorMovies (name, poster, year, review, tier, fullReview) VALUES (%s, %s, %s, %s, %s, %s);",name, poster, year, review, tier, fullReview);
                 stmt.executeUpdate(valuesInserted);
-                System.out.println(valuesInserted);
 
                 }
             }

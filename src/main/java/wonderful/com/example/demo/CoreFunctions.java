@@ -11,10 +11,13 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class CoreFunctions {
     public static String getMoviePoster(String movieQuery, String movieYear) throws JsonProcessingException {
-        movieQuery = movieQuery.replaceAll("[^a-zA-Z0-9 ]", "");
+        movieQuery = movieQuery.replaceAll("[^a-zA-Z0-9' ]", "");
         movieQuery = movieQuery.replaceAll(" ", "+");
 
         HttpClient client = HttpClient.newBuilder()
@@ -82,5 +85,20 @@ public class CoreFunctions {
         String decodedString = URLDecoder.decode(movieQuery, StandardCharsets.UTF_8);
 
         return decodedString;
+    }
+
+    public static String removeCharsAtIndices(String originalStr, Integer[] indicesToRemove) {
+        // Convert array of indices to a Set for faster lookups (O(1) average time complexity)
+        Set<Integer> indexSet = new HashSet<>(Arrays.asList(indicesToRemove));
+        StringBuilder result = new StringBuilder(originalStr.length() - indexSet.size());
+
+        for (int i = 0; i < originalStr.length(); i++) {
+            // If the current index is not in the set of indices to remove, append the character
+            if (!indexSet.contains(i)) {
+                result.append(originalStr.charAt(i));
+            }
+        }
+
+        return result.toString();
     }
 }

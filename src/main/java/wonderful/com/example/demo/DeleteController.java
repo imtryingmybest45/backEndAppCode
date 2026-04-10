@@ -43,11 +43,11 @@ public class DeleteController {
                 // Retrieve values by column name
                 movie = movie.substring(0, movie.length() - 1);
                 movie = coreFunctions.decodeMovieURL(movie);
-                name = "'"+movie+"'";
+                String newname = movie.replaceAll("'","''");
+                name = "'"+newname+"'";
 
                 String valuesInserted = String.format("DELETE from horrorMovies WHERE name = %s;",name);
                 stmt.executeUpdate(valuesInserted);
-                System.out.println(valuesInserted);
 
             }
         }
