@@ -25,15 +25,30 @@ public class CoreFunctions {
                 .connectTimeout(Duration.ofSeconds(10))
                 .build();
 
-        // 2. Build the HttpRequest object
+        String reqString;
+
+        if (movieYear.length()<4){
+            reqString = "http://www.omdbapi.com/?t=" + movieQuery + "&apikey=98f9696d";
+        }
+        else{
+            reqString = "http://www.omdbapi.com/?t=" + movieQuery + "&y=" + movieYear + "&apikey=98f9696d";
+        }
+
+            // 2. Build the HttpRequest object
+            /*HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create("http://www.omdbapi.com/?t=" + movieQuery + "&y=" + movieYear + "&apikey=98f9696d")) // Replace with your API URL
+                    .header("Accept", "application/json") // Common header for JSON APIs
+                    .GET() // Specify the HTTP method (GET, POST, PUT, DELETE, etc.)
+                    .build();*/
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("http://www.omdbapi.com/?t=" + movieQuery + "&y=" + movieYear + "&apikey=98f9696d")) // Replace with your API URL
+                .uri(URI.create(reqString)) // Replace with your API URL
                 .header("Accept", "application/json") // Common header for JSON APIs
                 .GET() // Specify the HTTP method (GET, POST, PUT, DELETE, etc.)
                 .build();
-        String posterResp = null;
-        String poster = "'boo'";
-        System.out.println(request);
+            String posterResp = null;
+            String poster = "'boo'";
+            System.out.println(request);
+
         try {
             // 3. Send the request synchronously and receive the response
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());

@@ -9,7 +9,7 @@ import java.sql.Statement;
 
 @RestController
 
-public class DeleteController {
+public class DeleteWatchController {
     //@CrossOrigin(origins="http://localhost:3000")
     @CrossOrigin(origins = {"http://localhost:3000",
             "https://green-smoke-0fa35931e.6.azurestaticapps.net/",
@@ -18,7 +18,7 @@ public class DeleteController {
             "https://zealous-desert-09313150f.6.azurestaticapps.net/",
             "https://help.aprilshorrorcorner.com"})
 
-    @PostMapping("/deleteEndpoint")
+    @PostMapping("/watchDeleteEndpoint")
     public String editData(@RequestBody String movie) throws IOException, SQLException {
         // AWS RDS Endpoint from the AWS Console
         // AWS RDS Endpoint from the AWS Console
@@ -43,11 +43,10 @@ public class DeleteController {
                 // Retrieve values by column name
                 movie = movie.substring(0, movie.length() - 1);
                 movie = coreFunctions.decodeMovieURL(movie);
-                System.out.println(movie);
                 String newname = movie.replaceAll("'","''");
                 name = "'"+newname+"'";
 
-                String valuesInserted = String.format("DELETE from horrorMovies WHERE name = %s;",name);
+                String valuesInserted = String.format("DELETE from watchList WHERE name = %s;",name);
                 stmt.executeUpdate(valuesInserted);
 
             }

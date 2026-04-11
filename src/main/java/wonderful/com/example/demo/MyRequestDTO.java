@@ -5,6 +5,7 @@ public class MyRequestDTO {
     private String movieTier;
     private String movieReview;
     private String movieYear;
+    private String movieBlurb;
 
     public void setMovieName(String movieName) {
         this.movieName = movieName;
@@ -20,6 +21,8 @@ public class MyRequestDTO {
 
     public void setMovieYear(String movieYear) {this.movieYear = movieYear;}
 
+    public void setMovieBlurb(String movieBlurb) {this.movieBlurb = movieBlurb;}
+
     public String getMovieName() {
         return movieName;
     }
@@ -29,6 +32,10 @@ public class MyRequestDTO {
     public String getMovieReview() {
         movieReview = movieReview.replace("'", "\\'");
         return "'"+movieReview+"'";
+    }
+    public String getMovieBlurb() {
+        movieBlurb = movieBlurb.replace("'", "\\'");
+        return "'"+movieBlurb+"'";
     }
     public String getMovieYear() {
         return movieYear;}
