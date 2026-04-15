@@ -2,10 +2,7 @@ package wonderful.com.example.demo;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 @RestController
 
@@ -37,14 +34,19 @@ public class EditController {
         String fullReview = "0";
         String year;
         String movieQuery;
+        String rating;
+        String origYear;
+        String origRating;
 
         CoreFunctions coreFunctions = new CoreFunctions();
 
         try (Connection conn = DriverManager.getConnection(url, username, password)) {
             if (conn != null) {
-                System.out.println("Connected to AWS RDS successfully!");
+                //System.out.println("Connected to AWS RDS successfully!");
                 Statement stmt = conn.createStatement();
                 stmt.execute("USE movies");
+                //ResultSet rs = stmt.executeQuery("SELECT * FROM horrorMovies WHERE name = '"+dto.getMovieName()+"';");
+                //rs.next();
                 //stmt.execute("INSERT INTO horrorMovies (name, poster, year, review, tier, fullReview)");
 
                 // Retrieve values by column name
@@ -71,7 +73,11 @@ public class EditController {
                 review = dto.getMovieReview();
                 year = dto.getMovieYear();
                 tier = dto.getMovieTier();
+                rating = dto.getMovieRating();
                 poster = coreFunctions.getMoviePoster(movieQuery, year);
+
+                //origYear = rs.getString("year");
+                //origRating = rs.getString("rating");
 
                 int wordCount = coreFunctions.countWords(review);
                 if (wordCount > 500) {
@@ -81,9 +87,16 @@ public class EditController {
                 name = "'"+newname+"'";
                 year = "'"+year+"'";
 
-                String valuesInserted = String.format("UPDATE horrorMovies SET poster = %s, year = %s, review = %s, tier = %s, fullReview = %s WHERE name = %s;",poster, year, review, tier, fullReview,name);
+                /*if (year.equals(origYear) && rating.equals(origRating)) {
+                    review = "'" + review + "'";
+                }
+                else{*/
+
+                review = "'"+review+"'";
+
+                String valuesInserted = String.format("UPDATE horrorMovies SET poster = %s, year = %s, review = %s, tier = %s, fullReview = %s, rating = %s WHERE name = %s;",poster, year, review, tier, fullReview,rating,name);
+                //System.out.println(valuesInserted);
                 stmt.executeUpdate(valuesInserted);
-                System.out.println(valuesInserted);
 
             }
         }

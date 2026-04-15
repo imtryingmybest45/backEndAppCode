@@ -35,6 +35,7 @@ public class AddController {
         String fullReview = "0";
         String year;
         String movieQuery;
+        String rating;
 
         Map<String, Object> response = new HashMap<>();
         CoreFunctions coreFunctions = new CoreFunctions();
@@ -71,6 +72,7 @@ public class AddController {
                 review = dto.getMovieReview();
                 year = dto.getMovieYear();
                 tier = dto.getMovieTier();
+                rating = dto.getMovieRating();
                 poster = coreFunctions.getMoviePoster(movieQuery, year);
 
                 int wordCount = coreFunctions.countWords(review);
@@ -81,7 +83,11 @@ public class AddController {
                 name = "'"+newname+"'";
                 year = "'"+year+"'";
 
-                String valuesInserted = String.format("INSERT INTO horrorMovies (name, poster, year, review, tier, fullReview) VALUES (%s, %s, %s, %s, %s, %s);",name, poster, year, review, tier, fullReview);
+                review = "'Release Date: "+year.replaceAll("'","")+"\n\n"+"Rating: "+rating.replaceAll("'","")+"/10"+"\n\n"+review+"'";
+
+                System.out.println(review);
+
+                String valuesInserted = String.format("INSERT INTO horrorMovies (name, poster, year, review, tier, fullReview, rating) VALUES (%s, %s, %s, %s, %s, %s, %s);",name, poster, year, review, tier, fullReview, rating);
                 stmt.executeUpdate(valuesInserted);
 
                 }

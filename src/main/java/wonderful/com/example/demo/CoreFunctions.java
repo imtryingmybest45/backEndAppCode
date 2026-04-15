@@ -47,7 +47,7 @@ public class CoreFunctions {
                 .build();
             String posterResp = null;
             String poster = "'boo'";
-            System.out.println(request);
+            //System.out.println(request);
 
         try {
             // 3. Send the request synchronously and receive the response

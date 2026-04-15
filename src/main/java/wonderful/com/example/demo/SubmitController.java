@@ -36,6 +36,7 @@ public class SubmitController {
         String poster;
         String review;
         String tier;
+        String rating;
         int fullReview;
         int year;
         int movieId;
@@ -43,7 +44,7 @@ public class SubmitController {
 
         try (Connection conn = DriverManager.getConnection(url, username, password)) {
             if (conn != null) {
-                System.out.println("Connected to AWS RDS successfully!");
+                //System.out.println("Connected to AWS RDS successfully!");
                 Statement stmt = conn.createStatement();
                 stmt.execute("USE movies");
                 ResultSet rs = stmt.executeQuery("SELECT * FROM horrorMovies ORDER BY name");
@@ -58,6 +59,7 @@ public class SubmitController {
                     year = rs.getInt("year");
                     fullReview = rs.getInt("fullReview");
                     movieId = rs.getInt("movieId");
+                    rating = rs.getString("rating");
 
                     //System.out.println(name);
 
@@ -65,6 +67,7 @@ public class SubmitController {
                     details.put("year",Integer.toString(year));
                     details.put("poster",poster);
                     details.put("review",review);
+                    details.put("rating",rating);
                     details.put("tier",tier);
                     details.put("fullReview",Integer.toString(fullReview));
                     details.put("movieId",Integer.toString(movieId));
