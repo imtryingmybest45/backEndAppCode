@@ -23,6 +23,14 @@ public class SubmitController {
 
         //MyRequestDTO dto = new MyRequestDTO();
 
+        /*try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }*/
+
+        //System.out.println("timer executed!");
+
         // AWS RDS Endpoint from the AWS Console
         String endpoint = "lizard.c6de8wseq94u.us-east-1.rds.amazonaws.com";
         String port = "3306"; // Default for MySQL

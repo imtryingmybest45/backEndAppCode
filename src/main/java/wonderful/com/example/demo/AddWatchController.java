@@ -84,6 +84,6 @@ public class AddWatchController {
         catch (SQLException e) {
             e.printStackTrace();
         }
-        return "You have submitted your review. Please wait a few minutes for the website to refresh.";
+        return "You have submitted your recommendation. Please wait a few minutes for the website to refresh.";
     }
 }
