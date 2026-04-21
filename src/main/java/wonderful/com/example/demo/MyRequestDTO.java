@@ -7,6 +7,7 @@ public class MyRequestDTO {
     private String movieYear;
     private String movieBlurb;
     private String movieRating;
+    private String movieId;
 
     public void setMovieName(String movieName) {
         this.movieName = movieName;
@@ -25,6 +26,8 @@ public class MyRequestDTO {
     public void setMovieBlurb(String movieBlurb) {this.movieBlurb = movieBlurb;}
 
     public void setMovieRating(String movieRating) {this.movieRating = movieRating;}
+
+    public void setMovieId(String movieId) {this.movieId = movieId;}
 
     public String getMovieName() {
         return movieName;
@@ -46,4 +49,8 @@ public class MyRequestDTO {
     }
     public String getMovieYear() {
         return movieYear;}
+    public String getMovieId() {
+        return movieId;
+    }
 }
+

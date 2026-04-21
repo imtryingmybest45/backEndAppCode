@@ -37,20 +37,21 @@ public class EditController {
         String rating;
         String origYear;
         String origRating;
+        String movieId;
 
         CoreFunctions coreFunctions = new CoreFunctions();
 
         try (Connection conn = DriverManager.getConnection(url, username, password)) {
             if (conn != null) {
-                //System.out.println("Connected to AWS RDS successfully!");
                 Statement stmt = conn.createStatement();
                 stmt.execute("USE movies");
                 //ResultSet rs = stmt.executeQuery("SELECT * FROM horrorMovies WHERE name = '"+dto.getMovieName()+"';");
                 //rs.next();
-                //stmt.execute("INSERT INTO horrorMovies (name, poster, year, review, tier, fullReview)");
 
                 // Retrieve values by column name
                 name = dto.getMovieName();
+                movieId = dto.getMovieId();
+
 
                 movieQuery = name;
                 String newname = name.replaceAll("'","''");
@@ -93,6 +94,8 @@ public class EditController {
                 else{*/
 
                 review = "'"+review+"'";
+
+                stmt.executeUpdate(String.format("UPDATE horrorMovies SET name = %s WHERE movieID = %s;",name,movieId));
 
                 String valuesInserted = String.format("UPDATE horrorMovies SET poster = %s, year = %s, review = %s, tier = %s, fullReview = %s, rating = %s WHERE name = %s;",poster, year, review, tier, fullReview,rating,name);
                 //System.out.println(valuesInserted);
