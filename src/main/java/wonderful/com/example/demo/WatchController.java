@@ -35,7 +35,9 @@ public class WatchController {
         String name;
         String poster;
         String blurb;
+
         int year;
+        int movieId;
         Map<String, Object> response = new HashMap<>();
 
         try (Connection conn = DriverManager.getConnection(url, username, password)) {
@@ -52,6 +54,7 @@ public class WatchController {
                     poster = rs.getString("poster");
                     blurb = rs.getString("blurb");
                     year = rs.getInt("year");
+                    movieId = rs.getInt("movieID");
 
                     //System.out.println(name);
 
@@ -59,6 +62,7 @@ public class WatchController {
                     details.put("year",Integer.toString(year));
                     details.put("poster",poster);
                     details.put("blurb",blurb);
+                    details.put("movieId",Integer.toString(movieId));
 
                     String movieName = name;
                     response.put(movieName, details);
