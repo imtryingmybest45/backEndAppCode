@@ -87,6 +87,6 @@ public class EditWatchController {
         catch (SQLException e) {
             e.printStackTrace();
         }
-        return "You have edited your review. Please wait a few minutes for the website to refresh.";
+        return "You have edited your recommendation. Please wait a few minutes for the website to refresh.";
     }
 }
