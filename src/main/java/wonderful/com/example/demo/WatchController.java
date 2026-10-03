@@ -32,6 +32,9 @@ public class WatchController {
         String url = "jdbc:mysql://" + endpoint + ":" + port + "/" + dbName;
         String username = "tomthelizard";
         String password = "lizarddd";
+        //String url = "jdbc:postgresql://aws-0-us-west-2.pooler.supabase.com:5432/movies";
+        //String username = "postgres.nfdbdmippwvzyuonxnpg";
+        //String password = "helpmekevinimdrowning";
         String name;
         String poster;
         String blurb;

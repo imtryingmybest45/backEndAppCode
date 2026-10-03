@@ -27,6 +27,9 @@ public class AddController {
         String url = "jdbc:mysql://" + endpoint + ":" + port + "/" + dbName;
         String username = "tomthelizard";
         String password = "lizarddd";
+        //String url = "jdbc:postgresql://aws-0-us-west-2.pooler.supabase.com:5432/movies";
+        //String username = "postgres.nfdbdmippwvzyuonxnpg";
+        //String password = "helpmekevinimdrowning";
 
         String name;
         String poster = "placeholder";
@@ -84,6 +87,7 @@ public class AddController {
                 year = "'"+year+"'";
 
                 review = "'Release Date: "+year.replaceAll("'","")+"\n\n"+"Rating: "+rating.replaceAll("'","")+"/10"+"\n\n"+review+"'";
+                //review = "$$Release Date: "+year.replaceAll("'","")+"\n\n"+"Rating: "+rating.replaceAll("'","")+"/10"+"\n\n"+review+"$$";
 
                 System.out.println(review);
 
