@@ -41,7 +41,8 @@ public class MyRequestDTO {
         return movieReview;
     }
     public String getMovieBlurb() {
-        movieBlurb = movieBlurb.replace("'", "\\'");
+        //movieBlurb = movieBlurb.replace("'", "\\'");
+        movieBlurb = movieBlurb.replace("'", "''");
         return "'"+movieBlurb+"'";
     }
     public String getMovieRating() {
