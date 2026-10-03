@@ -23,12 +23,12 @@ public class EditWatchController {
         String endpoint = "lizard.c6de8wseq94u.us-east-1.rds.amazonaws.com";
         String port = "3306"; // Default for MySQL
         String dbName = "mysql";
-        String url = "jdbc:mysql://" + endpoint + ":" + port + "/" + dbName;
+        /*String url = "jdbc:mysql://" + endpoint + ":" + port + "/" + dbName;
         String username = "tomthelizard";
-        String password = "lizarddd";
-        //String url = "jdbc:postgresql://aws-0-us-west-2.pooler.supabase.com:5432/movies";
-        //String username = "postgres.nfdbdmippwvzyuonxnpg";
-        //String password = "helpmekevinimdrowning";
+        String password = "lizarddd";*/
+        String url = "jdbc:postgresql://aws-0-us-west-2.pooler.supabase.com:5432/movies";
+        String username = "postgres.nfdbdmippwvzyuonxnpg";
+        String password = "helpmekevinimdrowning";
 
         String name;
         String poster = "placeholder";
@@ -42,7 +42,7 @@ public class EditWatchController {
         try (Connection conn = DriverManager.getConnection(url, username, password)) {
             if (conn != null) {
                 Statement stmt = conn.createStatement();
-                stmt.execute("USE movies");
+                //stmt.execute("USE movies");
                 //ResultSet rs = stmt.executeQuery("SELECT * FROM horrorMovies WHERE name = '"+dto.getMovieName()+"';");
                 //rs.next();
 

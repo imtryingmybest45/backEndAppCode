@@ -37,12 +37,12 @@ public class SubmitController {
         String dbName = "mysql";
 
         // JDBC URL format: jdbc:<engine>://<endpoint>:<port>/<dbName>
-        String url = "jdbc:mysql://" + endpoint + ":" + port + "/" + dbName;
+        /*String url = "jdbc:mysql://" + endpoint + ":" + port + "/" + dbName;
         String username = "tomthelizard";
-        String password = "lizarddd";
-        //String url = "jdbc:postgresql://aws-0-us-west-2.pooler.supabase.com:5432/movies";
-        //String username = "postgres.nfdbdmippwvzyuonxnpg";
-        //String password = "helpmekevinimdrowning";
+        String password = "lizarddd";*/
+        String url = "jdbc:postgresql://aws-0-us-west-2.pooler.supabase.com:5432/movies";
+        String username = "postgres.nfdbdmippwvzyuonxnpg";
+        String password = "helpmekevinimdrowning";
         String name;
         String poster;
         String review;
@@ -57,7 +57,7 @@ public class SubmitController {
             if (conn != null) {
                 //System.out.println("Connected to AWS RDS successfully!");
                 Statement stmt = conn.createStatement();
-                stmt.execute("USE movies");
+                //stmt.execute("USE movies");
                 ResultSet rs = stmt.executeQuery("SELECT * FROM horrorMovies ORDER BY name");
                 while (rs.next()) {
 

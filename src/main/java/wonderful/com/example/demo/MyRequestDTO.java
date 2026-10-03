@@ -36,8 +36,8 @@ public class MyRequestDTO {
         return "'"+movieTier+"'";
     }
     public String getMovieReview() {
-        movieReview = movieReview.replace("'", "\\'");
-        //movieReview = movieReview.replace("'", "''");
+        //movieReview = movieReview.replace("'", "\\'");
+        movieReview = movieReview.replace("'", "''");
         return movieReview;
     }
     public String getMovieBlurb() {
